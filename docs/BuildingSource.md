@@ -2,15 +2,15 @@
 
 ---
 
-# ZCU102-ADRV9002 IIO-Oscilloscope Build
-This document details the building of linux including the ADI libiio drivers for the [ZCU102-ADRV9002 development kit.](https://www.xilinx.com/products/boards-and-kits/ek-u1-zcu102-g.html).  More information about the ADI Yocoto layer can be found [here](https://github.com/analogdevicesinc/meta-adi/tree/master/meta-adi-xilinx).
+# Building Source
+This document details the building of linux including the ADI libiio drivers for the [BytePipe_x9002 RF SOM.](https://www.nextgenrf.com/products/rf-system-on-a-module/).  More information about the ADI Yocoto layer can be found [here](https://github.com/analogdevicesinc/meta-adi/tree/master/meta-adi-xilinx).
 
 
 ## Table of Contents
-- [ZCU102-ADRV9002 IIO-Oscilloscope Build](#zcu102-adrv9002-iio-oscilloscope-build)
+- [Building Source](#building-source)
   - [Table of Contents](#table-of-contents)
-- [Performing the Build](#performing-the-build)
-  - [Build Prerequisites](#build-prerequisites)
+- [Building HDL](#building-hdl)
+  - [Prerequisites](#building-hdl-prerequisites)
   - [(1) Create a workspace in your home directory](#1-create-a-workspace-in-your-home-directory)
   - [(2) Get NGRF's HDL](#2-get-ngrfs-hdl)
   - [(3) Prepare for PetaLinux build (Step 1)](#3-prepare-for-petalinux-build-step-1)
@@ -23,12 +23,10 @@ This document details the building of linux including the ADI libiio drivers for
   - [(6) Build the Kernel](#6-build-the-kernel)
 
 
-# Performing the Build
+# Building HDL
 
-## Build Prerequisites
-- PetaLinux installed; if not please start [here](../docs/PetaLinuxInstall.md).  
-- Xilinx Vivado installed
-- Access and permissions, to NextGen RF's HDL git [repository](http://ngrf.poweredbyclear.com:3000/NGRF/hdl.git).
+## Prerequisites
+- Vivado 2019.1; See [Prerequisits] (#Prerequisits.md)
 
 ## (1) Create a workspace in your home directory
 ```java
