@@ -3,24 +3,30 @@
 ---
 
 # NGRF IIO-Oscilloscope
-This repo contains items necessary to run IIO-Oscilloscope on a ADI ZADRV9002 Zynq UltraScale+ MPSoC ZCU102 and NGRF's BytePipe.
+This repo contains items necessary to run Analog Devices IIO-Oscilloscope on supported NextGenRF Design Hardware.  This includes the BytePipe_x9002 SOM shown below.
 
+![BytePipe_x9002_HardwareSetup](docs/images/BytePipe_x9002_Platform.jpg)
 
-## Table of Contents
-- [NGRF IIO-Oscilloscope](#ngrf-iio-oscilloscope)
-  - [Table of Contents](#table-of-contents)
-  - [Documents within](#documents-within)
+The IIO-Oscilloscope application developed by Analog Devices is a cross platform GUI application for capturing and plotting time domain, frequency domain, constellation, and cross-correlation data.  The application is designed to demonstrate the performance of Analog Devices evaluation boards.  This repository adds support for the BytePipe_x9002 SOM and other NextGenRF Design Hardware platforms.
 
-## Documents within
+![BytePipe_x9002_HardwareSetup](docs/images/iio_oscilloscope_plot_window.png)
+
+## Documents
 
 |  Document                                         | Description                               |
 |---------------------------------------------------|-------------------------------------------|
-| [BytePipe](docs/BytePipe.md)                      | BytePipe 3cg 9002 IIO-scope build         |
-| [Changelog](docs/CHANGELOG.md)                    | Release notes                             |
-| [Contribute](docs/CONTRIBUTING.md)                | Developement HOWTO                        |
+| [Quick Start](docs/QuickStart.md)            	    | IIO Oscilloscope Quick Start Guide        |
+| [Device Programming](docs/Programming.md)         | Programming hardware device with image    |
+| [Hardware](docs/Hardware.md)            	        | Supported Hardware                        |
+| [Prerequisites](docs/Prerequisits.md)             | Prerequisites for building source         |
+| [Building Source](docs/BuildingSource.md)         | Building Source (optional)                |
+| [Pre-built Images](docs/PreBuilt.md)        	    | Repository of pre-built images            |
+| [Running IIO-Oscilloscope](docs/Running.md)       | Running IIO-Oscilloscope                  |
 | [PetaLinux Install](docs/PetaLinuxInstall.md)     | Installation of PetaLinux                 |
-| [TES](docs/TESHowTo.md)                           | RF Transceiver Evaluation Software help   |
 | [Update Profile/Stream](docs/UpdateProfiles.md)   | Update device stream and profile          |
-| [ZADRV9002](docs/ZADRV9002.md)                    | ZCU102-ADRV9002 IIO-scope build           |
 
-For details on creating and updating device stream and profile, please start with [TES](docs/TESHowTo.md) then proceed to [Update Profile/Stream](docs/UpdateProfiles.md).
+
+
+
+
+
