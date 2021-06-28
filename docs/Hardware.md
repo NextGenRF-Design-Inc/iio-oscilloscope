@@ -528,3 +528,10 @@ The HDK connects PS_SRST_N to SW1 providing a push button reset to the user.
 The ZCU102 and ADRV9002 development kits from Xilinx and Analog Devices provide similar functionality to the BytePipe_x9002 in a larger form factor.  Additional information for the ZCU102 and ADRV9002 development kits can be found [here](https://wiki.analog.com/resources/eval/user-guides/adrv9001).
 
 
+### Disclaimer
+----------------------
+NextGen RF Design makes no warranty for the use of this code or design. This code is provided  "As Is". NextGen RF Design assumes no responsibility for
+any errors, which may appear in this code, nor does it make a commitment to update the information contained herein. NextGen RF Design specifically
+disclaims any implied warranties of fitness for a particular purpose.
+Copyright(c) NextGen RF Design
+All rights reserved.

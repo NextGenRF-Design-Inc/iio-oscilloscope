@@ -1,25 +1,28 @@
-![logo](../docs/images/ngrf_logo.png) 
 
----
+![logo](https://www.nextgenrf.com/assets/uploads/2020/06/logo.jpg)
 
-# PetaLinunx Installation 
-This document describes the process to install Xilinx PetaLinux tools.
+# Build Environment 
+
+This document describes the build environment for building the source of IIO-Oscilloscope.
 
 ## Table of Contents
-- [PetaLinunx Installation](#petalinunx-installation)
+- [Build Environment](#build-environment)
   - [Table of Contents](#table-of-contents)
-  - [Installation Requirements](#installation-requirements)
+- [Host PC](#host-pc)
+  - [Resources](#resources)
+  - [Linux](#linux)
+  - [Chrome](#chrome)
+  - [Tools](#tools)
+- [Vivado](#vivado)
+- [Petalinux](#petalinux)
 - [Installation Steps](#installation-steps)
-  - [Procedure Testing](#procedure-testing)
-    - [Ubuntu 18.04 (Bionic Beaver) VM](#ubuntu-1804-bionic-beaver-vm)
-- [Appendix](#appendix)
   - [Manual PetaLinux Dependency Installation](#manual-petalinux-dependency-installation)
+  - [### Disclaimer](#-disclaimer)
+# Host PC
 
+##  Resources
 
-## Installation Requirements
-PetaLinux has the following installation requirements, [^ug1] 
-
-- Minimum workstation requirements:
+  The following list the minimum recommended workstation requirements:
   - 8 GB RAM (recommended minimum for Xilinx® tools)
   - 2 GHz CPU clock or equivalent (minimum of 8 cores)
   - 100 GB free HDD space
@@ -30,6 +33,53 @@ PetaLinux has the following installation requirements, [^ug1]
 - Root access to install PetaLinux dependencies
 - Bash shell
 - Xilinx account (to perform downloads)
+
+## Linux
+
+[Ubuntu 18.04.4](http://old-releases.ubuntu.com/releases/18.04.4/ubuntu-18.04-desktop-amd64.iso) is used for the host PC operating system.
+
+* Download ISO image
+* Create bootable USB drive using [Rufus](https://rufus.ie/) 
+
+See additional information [here](https://ubuntu.com/tutorials/create-a-usb-stick-on-windows#1-overview).
+
+## Chrome
+
+This is optional but often useful for accessing google services such as Drive, Gmail, and Hangouts.  From the bash terminal run the following commands.
+
+```
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo chmod +x google-chrome-stable_current_amd64.deb
+sudo apt install ./google-chrome-stable_current_amd64.deb
+```
+
+## Tools
+
+The following tools should be installed.
+
+```
+sudo apt install git
+sudo apt-get install build-essential
+sudo apt-get install u-boot-tools 
+sudo apt install snapd
+sudo snap install barrier
+```
+
+# Vivado
+
+To build the HDL Vivado 2019.1 must be downloaded and installed from [here](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive.html).  
+
+![vivado_2019.1_download](images/vivado_2019_1_download.png)
+
+Once downloaded execute the following bash commands. It is important not to install with sudo.
+
+```bash
+cd Downloads/
+sudo chmod +x Xilinx_Vivado_SDK_Web_2019.1_0524_1430_Lin64.bin
+./Xilinx_Vivado_SDK_Web_2019.1_0524_1430_Lin64.bin
+```
+# Petalinux
+This document describes the process to install Xilinx PetaLinux tools.
 
 PetaLinux dependency installation can be performed using the script `petatepinstall.sh` contained in thus repo, directory `scripts`. 
 
@@ -85,28 +135,6 @@ Removing 'diversion of /usr/share/man/man1/sh.1.gz to /usr/share/man/man1/sh.dis
 Adding 'diversion of /usr/share/man/man1/sh.1.gz to /usr/share/man/man1/sh.distrib.1.gz by bash'
 
 ```
-
-You are now ready to build on the system.
-
-## Procedure Testing
-This procedure has been tested with the following environments.
-
-### Ubuntu 18.04 (Bionic Beaver) VM
-- Window Machine
-    - Windows `10 Pro`
-    - Version: `10.0.19042 Build 19042`
-    - Model: `XPS 13 7390`
-    - Type: `x64`
-    - Processor: `Processor	Intel(R) Core(TM) i7-10710U CPU @ 1.10GHz, 1608 Mhz, 6 Core(s), 12 Logical Processor(s)`
-    - RAM `16GB`
-- VM Host: `WMWare Workstation 16 Pro (16.1.0 build-17198959)`
-    - Memory: `4GB`
-    - Processors: `4 with 2 cores per processor`
-    - HD: `128GB`
-    - OS: `Ubuntu Ubuntu 18.04.5 LTS`
-
-
-# Appendix
 ## Manual PetaLinux Dependency Installation
 
 ```bash
@@ -146,5 +174,12 @@ sudo apt-get -y install tofrodos \
     sudo apt-get install libglib2.0-dev
 ```
 
-<!-- Footnotes -->
-[^ug1]: [ug1144-petalinux-tools-reference-guide.pdf](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2019_2/ug1144-petalinux-tools-reference-guide.pdf)
+
+### Disclaimer
+----------------------
+NextGen RF Design makes no warranty for the use of this code or design. This code is provided  "As Is". NextGen RF Design assumes no responsibility for
+any errors, which may appear in this code, nor does it make a commitment to update the information contained herein. NextGen RF Design specifically
+disclaims any implied warranties of fitness for a particular purpose.
+Copyright(c) NextGen RF Design
+All rights reserved.
+

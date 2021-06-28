@@ -2,7 +2,7 @@ wrkDir:=${PWD}
 srcDir:=$(dir $(lastword $(MAKEFILE_LIST)))
 hdlDir:=$(wrkDir)/Adi/hdl
 
-include $(srcDir)../../../scripts/xilinx_tools.mk
+include $(srcDir)../xilinx_tools.mk
 
 .PHONY:	all
 
@@ -14,7 +14,7 @@ directories:
 	@echo 'Vivado Directory: $(vivadoDir)'
 
 boards:
-	@cp -r $(srcDir)../../../boards/bytepipe_3cg_som $(vivadoDir)/data/boards/board_files/
+	@cp -r $(srcDir)../../boards/bytepipe_3cg_som $(vivadoDir)/data/boards/board_files/
 
 vivado:
 	@source $(vivadoDir)/settings64.sh

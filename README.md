@@ -18,11 +18,11 @@ The IIO-Oscilloscope application developed by Analog Devices is a cross platform
 | [Quick Start](docs/QuickStart.md)            	    | IIO Oscilloscope Quick Start Guide        |
 | [Device Programming](docs/Programming.md)         | Programming hardware device with image    |
 | [Hardware](docs/Hardware.md)            	        | Supported Hardware                        |
-| [Prerequisites](docs/Prerequisits.md)             | Prerequisites for building source         |
-| [Building Source](docs/BuildingSource.md)         | Building Source (optional)                |
+| [Build Environment](docs/BuildEnv.md)             | Build Environment                         |
+| [Building HDL](docs/BuildingHdl.md)               | Building HDL from source                  |
+| [Building Application](docs/BuildingLinux.md)     | Building application from source          |
 | [Pre-built Images](docs/PreBuilt.md)        	    | Repository of pre-built images            |
-| [Running IIO-Oscilloscope](docs/Running.md)       | Running IIO-Oscilloscope                  |
-| [PetaLinux Install](docs/PetaLinuxInstall.md)     | Installation of PetaLinux                 |
+| [Running IIO-Oscilloscope](docs/Running.md)       | Running IIO-Oscilloscope                  |              |
 | [Update Profile/Stream](docs/UpdateProfiles.md)   | Update device stream and profile          |
 
 
