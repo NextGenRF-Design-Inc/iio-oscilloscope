@@ -14,7 +14,6 @@ git clone https://github.com/NextGenRF-Design-Inc/iio-oscilloscope.git
 Next create a workspace folder.  This can be created anywhere and can be deleted once the build is done. 
 
 ```bash
-cd iio-oscilliscope
 mkdir workspace
 cd workspace
 ```
