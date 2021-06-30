@@ -92,7 +92,7 @@ This is shown below.
 Next update the configuration file to build with the bytepipe device tree.  
 
 ```bash
-echo "KERNEL_DTB=\"system-user\"" >> project-spec/meta-user/conf/petalinuxbsp.conf
+echo "KERNEL_DTB=\"zynqmp-bytepipe\"" >> project-spec/meta-user/conf/petalinuxbsp.conf
 ```
 
 # Build the Kernel
@@ -105,7 +105,7 @@ petalinux-build
 The initial Kernel build will fail indicating the device tree cannot be found.  To fix enter the following command and rebuild.
 
 ```bash
-cp ~/hdl/projects/iio/bytepipe_3cg_9002/zynqmp-bytepipe.dts ~/workspace/petalinux/build/tmp/work-shared/plnx-zynqmp/kernel-source/arch/arm64/boot/dts/xilinx/
+cp ~/iio-oscilloscope/dts/zynqmp-bytepipe.dts ~/workspace/iioscope/build/tmp/work-shared/plnx-zynqmp/kernel-source/arch/arm64/boot/dts/xilinx/
 petalinux-build
 ```
 
@@ -114,7 +114,7 @@ petalinux-build
 Once the kernel is built a BOOT.BIN file must be created which encapsulates the first stage bootloader, FPGA binary, platform management unit, ARM trusted firmware, and UBOOT.  This is done with the following command.
 
 ```bash
-cd ~/workspace/petalinux/images/linux/
+cd ~/workspace/iioscope/images/linux/
 petalinux-package --boot --fsbl zynqmp_fsbl.elf --fpga system.bit --pmufw pmufw.elf --atf bl31.elf --u-boot u-boot.elf 
 ```
 
@@ -123,7 +123,7 @@ petalinux-package --boot --fsbl zynqmp_fsbl.elf --fpga system.bit --pmufw pmufw.
 See [Device Programming](Programming.md) which describes flashing the SD card with the correct partitions and file system.  Once this is done the previously built images can be copied to the SD card.
 
 ```bash
-cp ~/workspace/petalinux/images/linux/image.ub /media/username/BOOT/
-cp ~/workspace/petalinux/images/linux/BOOT.BIN /media/username/BOOT/
-cp ~/workspace/petalinux/images/linux/system.dtb /media/username/BOOT/
+cp ~/workspace/iioscope/images/linux/image.ub /media/username/BOOT/
+cp ~/workspace/iioscope/images/linux/BOOT.BIN /media/username/BOOT/
+cp ~/workspace/iioscope/images/linux/system.dtb /media/username/BOOT/
 ```
