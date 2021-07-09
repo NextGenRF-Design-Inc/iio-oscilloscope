@@ -7,7 +7,7 @@ This repo contains items necessary to run Analog Devices IIO-Oscilloscope on sup
 
 ![BytePipe_x9002_HardwareSetup](docs/images/BytePipe_x9002_Platform.jpg)
 
-The IIO-Oscilloscope application developed by Analog Devices is a cross platform GUI application for capturing and plotting time domain, frequency domain, constellation, and cross-correlation data.  The application is designed to demonstrate the performance of Analog Devices evaluation boards.  This repository adds support for the BytePipe_x9002 SOM and other NextGenRF Design Hardware platforms.
+The IIO-Oscilloscope application developed by Analog Devices is a cross platform GUI application for capturing and plotting time domain, frequency domain, constellation, and cross-correlation data.  The application is designed to demonstrate the performance of Analog Devices evaluation boards.  This repository adds support for the BytePipe_x9002 SOM and other NextGenRF Design Hardware platforms.  The PC software can be downloaded from the releases tab [here](https://github.com/analogdevicesinc/iio-oscilloscope/releases).
 
 ![BytePipe_x9002_HardwareSetup](docs/images/iio_oscilloscope_plot_window.png)
 
@@ -22,8 +22,12 @@ The IIO-Oscilloscope application developed by Analog Devices is a cross platform
 | [Building HDL](docs/BuildingHdl.md)               | Building HDL from source                  |
 | [Building Application](docs/BuildingLinux.md)     | Building application from source          |
 | [Pre-built Images](docs/PreBuilt.md)        	    | Repository of pre-built images            |
-| [Running IIO-Oscilloscope](docs/Running.md)       | Running IIO-Oscilloscope                  |              |
+| [Running IIO-Oscilloscope](docs/Running.md)       | Running IIO-Oscilloscope                  |        
 | [Update Profile/Stream](docs/UpdateProfiles.md)   | Update device stream and profile          |
+
+
+
+
 
 
 

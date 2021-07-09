@@ -5,21 +5,6 @@
 # Quick Start
 This document gives a quick start guide for running IIO-Oscilloscope NextGenRF Design's Hardware.
 
-## Table of Contents
-- [Quick Start](#quick-start)
-  - [Table of Contents](#table-of-contents)
-- [BytePipe_x9002 Hardware Development Kit (HDK)](#bytepipe_x9002-hardware-development-kit-hdk)
-  - [SOM/HDK Interconnect](#somhdk-interconnect)
-  - [Fan](#fan)
-  - [Power Supply](#power-supply)
-  - [BOOT Switch](#boot-switch)
-  - [SD Card](#sd-card)
-  - [Ethernet Connection](#ethernet-connection)
-  - [Serial Port](#serial-port)
-  - [External Display](#external-display)
-  - [KeyBoard/Mouse](#keyboardmouse)
-- [ZCU102-ADRV9002](#zcu102-adrv9002)
-- [Launching IIO-Oscilliscope](#launching-iio-oscilliscope)
 
 # BytePipe_x9002 Hardware Development Kit (HDK)
 
@@ -77,7 +62,8 @@ Information for setting up the ADRV9002 Zynq UltraScale+ MPSoC ZCU102 Evaluation
 
 # Launching IIO-Oscilliscope
 
-Information for launching the IIO-Oscilloscope application locally or via a remote PC can be found [here](https://wiki.analog.com/resources/tools-software/linux-software/iio_oscilloscope).
+Information for launching the IIO-Oscilloscope application locally or via a remote PC can be found [here](https://wiki.analog.com/resources/tools-software/linux-software/iio_oscilloscope).  The PC software can be downloaded from the releases tab [here](https://github.com/analogdevicesinc/iio-oscilloscope/releases).
+
 
 
 
