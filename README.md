@@ -20,9 +20,7 @@ The IIO-Oscilloscope application developed by Analog Devices is a cross platform
 | [Hardware](docs/Hardware.md)            	        | Supported Hardware                        |
 | [Build Environment](docs/BuildEnv.md)             | Build Environment                         |
 | [Building HDL](docs/BuildingHdl.md)               | Building HDL from source                  |
-| [Building Application](docs/BuildingLinux.md)     | Building application from source          |
-| [Pre-built Images](docs/PreBuilt.md)        	    | Repository of pre-built images            |
-| [Running IIO-Oscilloscope](docs/Running.md)       | Running IIO-Oscilloscope                  |        
+| [Building Application](docs/BuildingLinux.md)     | Building application from source          |     
 | [Update Profile/Stream](docs/UpdateProfiles.md)   | Update device stream and profile          |
 
 
