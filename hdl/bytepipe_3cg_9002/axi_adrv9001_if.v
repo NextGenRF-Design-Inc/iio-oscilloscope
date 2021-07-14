@@ -340,11 +340,11 @@ module axi_adrv9001_if #(
    .dac_rst (tx1_rst),
    .dac_clk_div (dac_1_clk_div),
 
-   .dac_data_2 (~dac_1_data_0),
-   .dac_data_3 (~dac_1_data_1),
-   .dac_data_0 (dac_1_data_2),
-   .dac_data_1 (dac_1_data_3),
-   .dac_data_strb (~dac_1_data_strobe),
+   .dac_data_0 (~dac_1_data_0),
+   .dac_data_1 (~dac_1_data_1),
+   .dac_data_2 (dac_1_data_2),
+   .dac_data_3 (dac_1_data_3),
+   .dac_data_strb (dac_1_data_strobe),
    .dac_data_clk (dac_1_data_clk),
    .dac_data_valid (dac_1_data_valid),
 

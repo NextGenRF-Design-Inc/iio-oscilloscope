@@ -36,7 +36,7 @@ Make sure the boot switch located on the bottom of the SOM is switched to SD as 
 
 ## SD Card
 
-Insert a SD card formatted with the latest release build.  See [Device Programming](docs/Programming.md) for additional information on formatting and 
+Insert a SD card formatted with the latest release build.  See [Device Programming](Programming.md) for additional information on formatting and 
 
 ## Ethernet Connection
 
