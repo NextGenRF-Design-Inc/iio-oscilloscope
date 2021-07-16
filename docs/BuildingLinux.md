@@ -20,40 +20,27 @@ cd workspace
 
 # Board Support Package
 
-Before the Linux Application can be built a board support package must be generated.  Petalinux can create the board support package from a hardware definition file.  The hardware definition file is an output of the HDL build.  A pre-built hardware definition file can used or the HDL can be built from source.  To build the HDL from source see [Building HDL](BuildingHdl.mdl).  
+Before the Linux Application can be built a board support package must be generated.  Petalinux can create the board support package from a hardware definition file.  The hardware definition file is an output of the HDL build.  The latest released hardware definition file [here](https://github.com/NextGenRF-Design-Inc/iio-oscilloscope/releases) can be used if there are no significant changes between the previous released version and the master branch.  Otherwise the HDL should be built from source.  To build the HDL from source see [Building HDL](BuildingHdl.mdl).  
 
-To use a pre-built hardware definition file you simply need to copy it to the workspace folder and point Petalinux to it.  The IIO-Oscilloscope repo contains a pre-built hardware definition file and it can be copied using the following command. 
+In either case to build the application a system.hdf must be placed at the top level of the workspace.  Petalinux will use this to create the board support package used by the application and linux kernel.
 
-```bash
-cp ~/iio-oscilloscope/hdl/bytepipe_3cg_9002/system.hdf ./
-```
+# Build Script
 
-# Meta-ADI
+The application, bsp, boot-loader, and all necessary files are built using a single build script  The script fetches the latest sources from Analog Devices and Xilinx and compiles the source code for NextGenRF Design hardware platforms.  
 
-This step downloads Analog Devices Linux platform layer.  More information about the ADI Yocoto layer can be found [here](https://github.com/analogdevicesinc/meta-adi/tree/master/meta-adi-xilinx).
-
-```bash
-git clone --branch 2019_R2 https://github.com/analogdevicesinc/meta-adi.git
-```
-# Create Petalinux Project
-
-This step creates a Petalinux project called iioscope.
+Before executing the script the Petalinux environment path must be setup as shown below. 
 
 ```bash
 source ~/tools/Xilinx/petalinux/2019.1/settings.sh
-petalinux-create -t project --template zynqMP --name iioscope
-cd iioscope/
 ```
 
-# Kernel Configuration
-
-Next the kernel must be configured with the appropriate settings.  This is done by through the `MenuConfig`.
+The next step is to run the build script.  The application build script is located in the app folder `iio-oscilloscope/app`.  The preferred method is to run this script from within the workspace directory as shown below.  
 
 ```bash
-petalinux-config --get-hw-description=~/workspace/
-```
+make -f ~/iio-oscilloscope/app/Makefile
+``` 
 
-When running petalinux-config, a configuration menu will come up. Go to Yocto Settings→User layers and add the following. 
+The script starts by fetching the necessary source code and creating a Petalinux project.  Once the project is created a configuration menu will come up.   Navigate to Yocto Settings→User layers and add the following. 
 
 `~/workspace/meta-adi/meta-adi-core`
 `~/workspace/meta-adi/meta-adi-xilinx`
@@ -62,68 +49,13 @@ When running petalinux-config, a configuration menu will come up. Go to Yocto Se
 
 ![Yocto Settings](images/petaCfgYoctoSettings.png)
 
-# Device Configuration
-Next the device tree must be configured and the kernel built.  
+Once the Petalinux configuration has been done the script launches a `menuconfig` allowing the user to configure the Linux Kernel.  Currently no kernel customization is required and the menu can simply be exited.
 
-Start by copying the device tree files to meta-adi-xilnx/recipies-bsp/device-tree/files/. 
+![kernel_menuconfig](images/kernel_menuconfig.png)
 
-```bash
-cp ~/iio-oscilloscope/dts/zynqmp-bytepipe.dts ~/workspace/meta-adi/meta-adi-xilinx/recipes-bsp/device-tree/files/
-cp ~/iio-oscilloscope/dts/pl-delete-nodes-zynqmp-bytepipe.dtsi ~/workspace/meta-adi/meta-adi-xilinx/recipes-bsp/device-tree/files/
-```
+Once the project and kernel has been configured the script will setup the appropriate device tree and execute a `petalinux-build`.  You may notice from the terminal a few errors as shown below, this is normal.
+The build script must start the build, let it fail, copy additional device tree files, and then re-build.  This is all done automatically by the script, if no additional errors beyond what is shown below are observed then the build has finished successfully.
 
-Next open device-tree.bbappend and add the BytePipe device tree.  The file can be opened using gedit as shown below.
+![build_output](images/build_output.png)
 
-```bash
-gedit ~/workspace/meta-adi/meta-adi-xilinx/recipes-bsp/device-tree/device-tree.bbappend
-```
-
-Manually add the following lines under `SRC_URI_append_zynqmp`.
-
-```
-file://pl-delete-nodes-zynqmp-bytepipe.dtsi \
-file://zynqmp-bytepipe.dts \
-```
-
-This is shown below.
-
-![Yocto Settings](images/bbappend.png)
-
-Next update the configuration file to build with the bytepipe device tree.  
-
-```bash
-echo "KERNEL_DTB=\"zynqmp-bytepipe\"" >> project-spec/meta-user/conf/petalinuxbsp.conf
-```
-
-# Build the Kernel
-With the configuration as desired the kernel may now be built with the following command.
-
-```bash
-petalinux-build
-```
-
-The initial Kernel build will fail indicating the device tree cannot be found.  To fix enter the following command and rebuild.
-
-```bash
-cp ~/iio-oscilloscope/dts/zynqmp-bytepipe.dts ~/workspace/iioscope/build/tmp/work-shared/plnx-zynqmp/kernel-source/arch/arm64/boot/dts/xilinx/
-petalinux-build
-```
-
-# Package Boot Files
-
-Once the kernel is built a BOOT.BIN file must be created which encapsulates the first stage bootloader, FPGA binary, platform management unit, ARM trusted firmware, and UBOOT.  This is done with the following command.
-
-```bash
-cd ~/workspace/iioscope/images/linux/
-petalinux-package --boot --fsbl zynqmp_fsbl.elf --fpga system.bit --pmufw pmufw.elf --atf bl31.elf --u-boot u-boot.elf 
-```
-
-# Flash SD Card
-
-See [Device Programming](Programming.md) which describes flashing the SD card with the correct partitions and file system.  Once this is done the previously built images can be copied to the SD card.
-
-```bash
-cp ~/workspace/iioscope/images/linux/image.ub /media/username/BOOT/
-cp ~/workspace/iioscope/images/linux/BOOT.BIN /media/username/BOOT/
-cp ~/workspace/iioscope/images/linux/system.dtb /media/username/BOOT/
-```
+When the source has finished building a boot image is created.  The BOOT.BIN file encapsulates the first stage bootloader, FPGA binary, platform management unit, ARM trusted firmware, and UBOOT.  This is all done by the script.  The resulting build outputs are then copied from the build directory to the top of workspace.  These files can be copied to the SD card.  See [Device Programming](Programming.md) which describes flashing the SD card with the correct partitions and file system.

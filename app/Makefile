@@ -3,7 +3,7 @@ srcDir:=$(dir $(lastword $(MAKEFILE_LIST)))
 
 .PHONY:	all
 
-all:directories fetch project kernel dts build package output
+all:directories fetch project dts kernel build package output
 
 directories:
 	@echo 'Source Directory: $(srcDir)'
@@ -17,15 +17,15 @@ project:
 	petalinux-create -t project --template zynqMP --name iioscope
 	petalinux-config -p iioscope/ --get-hw-description=$(wrkDir)
 
-kernel: 
-	petalinux-config -c kernel
-
 dts:
 	@cp $(srcDir)/zynqmp-bytepipe.dts meta-adi/meta-adi-xilinx/recipes-bsp/device-tree/files/
 	@cp $(srcDir)/pl-delete-nodes-zynqmp-bytepipe.dtsi meta-adi/meta-adi-xilinx/recipes-bsp/device-tree/files/
 	@sed -i 's/.*SRC_URI_append_zynqmp.*/&\n\t\tfile:\/\/pl-delete-nodes-zynqmp-bytepipe.dtsi \\/' meta-adi/meta-adi-xilinx/recipes-bsp/device-tree/device-tree.bbappend
 	@sed -i 's/.*SRC_URI_append_zynqmp.*/&\n\t\tfile:\/\/zynqmp-bytepipe.dts \\/' meta-adi/meta-adi-xilinx/recipes-bsp/device-tree/device-tree.bbappend
 	@echo "KERNEL_DTB=\"zynqmp-bytepipe\"" >> iioscope/project-spec/meta-user/conf/petalinuxbsp.conf
+
+kernel: 
+	petalinux-config -p iioscope/ -c kernel
 
 build:
 	petalinux-build -p iioscope/ || true
@@ -39,6 +39,7 @@ output:
 	cp iioscope/images/linux/image.ub ./
 	cp iioscope/images/linux/BOOT.BIN ./
 	cp iioscope/images/linux/system.dtb ./
+	cp iioscope/images/linux/fsbl.elf ./
 
 
 
