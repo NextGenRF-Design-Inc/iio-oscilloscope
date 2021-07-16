@@ -1,12 +1,13 @@
 wrkDir:=${PWD}
 srcDir:=$(dir $(lastword $(MAKEFILE_LIST)))
 hdlDir:=$(wrkDir)/Adi/hdl
+vivadoDir:= which vivado
 
 include $(srcDir)../xilinx_tools.mk
 
 .PHONY:	all
 
-all: directories vivado boards adi_hdl build export
+all: directories boards adi_hdl build
 
 directories:
 	@echo 'Source Directory: $(srcDir)'
@@ -14,10 +15,7 @@ directories:
 	@echo 'Vivado Directory: $(vivadoDir)'
 
 boards:
-	@cp -r $(srcDir)../../boards/bytepipe_3cg_som $(vivadoDir)/data/boards/board_files/
-
-vivado:
-	@source $(vivadoDir)/settings64.sh
+	@cp -r $(srcDir)/boards/bytepipe_3cg_som $(vivadoDir)/data/boards/board_files/
 
 build:
 	$(MAKE) -C $(wrkDir)/Adi/hdl/library/util_pack/util_upack2 xilinx || exit $$?;
@@ -28,14 +26,12 @@ build:
 	$(MAKE) -C $(wrkDir)/Adi/hdl/library/axi_adrv9001 xilinx || exit $$?;
 	vivado -nojournal -source $(srcDir)/make.tcl
 
-export:
-
-
 adi_hdl: | $(hdlDir)
 
 $(hdlDir):
 	@mkdir -p $(hdlDir)
 	git clone --branch hdl_2019_r2 https://github.com/analogdevicesinc/hdl.git $(wrkDir)/Adi/hdl
+	git checkout 061d024d596ef84c6a819854bf2472e6b43a2d5d 
 	@sed -i 's/2019.1/2019.1.3/g' $(wrkDir)/Adi/hdl/library/scripts/adi_ip_xilinx.tcl
 	@cp $(srcDir)/axi_adrv9001_if.v $(wrkDir)/Adi/hdl/library/axi_adrv9001/
 
