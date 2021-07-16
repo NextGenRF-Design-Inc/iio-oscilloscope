@@ -39,7 +39,8 @@ output:
 	cp iioscope/images/linux/image.ub ./
 	cp iioscope/images/linux/BOOT.BIN ./
 	cp iioscope/images/linux/system.dtb ./
-	cp iioscope/images/linux/fsbl.elf ./
+	cp iioscope/images/linux/zynqmp_fsbl.elf ./
+
 
 
 
