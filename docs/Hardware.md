@@ -5,49 +5,6 @@
 # Supported Hardware
 This document gives an overview of NextGenRF Design's Hardware supported by the IIO-Oscilloscope application. 
 
-## Table of Contents
-- [Supported Hardware](#supported-hardware)
-  - [Table of Contents](#table-of-contents)
-- [BytePipe_x9002](#bytepipe_x9002)
-  - [J600](#j600)
-  - [J601](#j601)
-  - [Boot Switch](#boot-switch)
-  - [ADRV9002 Interface](#adrv9002-interface)
-  - [DAC](#dac)
-  - [ADC](#adc)
-  - [MCS](#mcs)
-  - [SPI](#spi)
-  - [UART](#uart)
-  - [I2C](#i2c)
-  - [CAN](#can)
-  - [GPIO](#gpio)
-  - [GigaBit Tranceivers (GTR)](#gigabit-tranceivers-gtr)
-  - [RF Ports](#rf-ports)
-  - [RF Clock](#rf-clock)
-  - [Gigabit Ethernet](#gigabit-ethernet)
-  - [USB PHY](#usb-phy)
-  - [Cover](#cover)
-  - [ADRV9002 Version](#adrv9002-version)
-- [Hardware Development Kit (HDK)](#hardware-development-kit-hdk)
-  - [Power](#power)
-  - [Power Switch](#power-switch)
-  - [Ethernet](#ethernet)
-  - [Display Port](#display-port)
-  - [USB](#usb)
-  - [SD Card](#sd-card)
-  - [SATA](#sata)
-  - [PS MIO](#ps-mio)
-  - [RFIC GPIO](#rfic-gpio)
-  - [RF Clock](#rf-clock-1)
-  - [MCS](#mcs-1)
-  - [Fan](#fan)
-  - [RF SMA Ports](#rf-sma-ports)
-  - [PMOD](#pmod)
-  - [JTAG](#jtag)
-  - [Serial Port](#serial-port)
-  - [Reset Button](#reset-button)
-- [ZCU102-ADRV9002](#zcu102-adrv9002)
-
 # BytePipe_x9002
 
 The BytePipe_x9002 is a high performance RF Systom On Module (SOM).  The BytePipe_x9002 integrates a high performance Xilinx Zynq UltraScale+ baseband processor with the Analog Devices ADRV9002 RFIC.   
@@ -175,6 +132,8 @@ J601 is a board to board connector which provides access to power and RF control
 ## Boot Switch
 
 The boot switch allows user to select the location of boot code for the baseband processor.  When SD is selected the basband processor will boot from the external SD card.  When EMMC is selected the baseband processor will boot from the 8GB on-board EMMC flash.    
+
+![boot_switch.png](images/boot_switch.png)
 
 ## ADRV9002 Interface
 
@@ -460,6 +419,8 @@ The HDK allows for an external RF clock to be connected to J16.  Software can be
 The HDK allows for an external MCS signal be connected to J15.  Software can be configured to enable this functionality.
 
 ## Fan
+
+![fan_connection](images/fan_connection.PNG)
 
 The HDK supports a 3pin 5V Fan connection using J1.  
 

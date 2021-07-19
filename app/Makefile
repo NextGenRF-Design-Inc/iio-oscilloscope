@@ -11,7 +11,6 @@ directories:
 
 fetch:
 	git clone --branch 2019_R2 https://github.com/analogdevicesinc/meta-adi.git
-	git -C meta-adi/ checkout 20ac597e7ab0ae1062b149929a9d8d4b70ad55e1
 
 project:
 	petalinux-create -t project --template zynqMP --name iioscope

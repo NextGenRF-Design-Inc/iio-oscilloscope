@@ -4,20 +4,6 @@
 # Build Environment 
 
 This document describes the build environment for building the source of IIO-Oscilloscope.
-
-## Table of Contents
-- [Build Environment](#build-environment)
-  - [Table of Contents](#table-of-contents)
-- [Host PC](#host-pc)
-  - [Resources](#resources)
-  - [Linux](#linux)
-  - [Chrome](#chrome)
-  - [Tools](#tools)
-- [Vivado](#vivado)
-- [Petalinux](#petalinux)
-- [Installation Steps](#installation-steps)
-  - [Manual PetaLinux Dependency Installation](#manual-petalinux-dependency-installation)
-  - [### Disclaimer](#-disclaimer)
 # Host PC
 
 ##  Resources
@@ -42,16 +28,6 @@ This document describes the build environment for building the source of IIO-Osc
 * Create bootable USB drive using [Rufus](https://rufus.ie/) 
 
 See additional information [here](https://ubuntu.com/tutorials/create-a-usb-stick-on-windows#1-overview).
-
-## Chrome
-
-This is optional but often useful for accessing google services such as Drive, Gmail, and Hangouts.  From the bash terminal run the following commands.
-
-```
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo chmod +x google-chrome-stable_current_amd64.deb
-sudo apt install ./google-chrome-stable_current_amd64.deb
-```
 
 ## Tools
 

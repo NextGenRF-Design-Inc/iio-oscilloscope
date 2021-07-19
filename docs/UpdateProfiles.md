@@ -1,91 +1,81 @@
 ![logo](../docs/images/ngrf_logo.png)
 
 ---
+# Device Profile
 
-# IIO-Oscilloscope Streams and Profiles
-ADI online instructions will guide one to use IIO-Oscilloscope SW to update a device profile and stream.  As of March 20, 2021 IIO-Oscilloscope - v0.14-master version will fail to load either the profile or the stream.  An investigation, looking at `dmesg`, does not detail and apparent issue on the device side.  It is thought the issue is with the IIO-Oscilloscope v0.14 SW itself.  Therefore, to updating the profile and stream is done on the device itself using the command line.
+The radio is configured by a profile which contains all the appropriate settings and configuration steps to successfully setup the radio.  Profiles can be generated using the Transceiver Evaluation Software (TES) from Analog Devices.  The TES software allows users to create their own profiles which can be exported and then loaded into the device using IIO-Oscilloscope.  Along with the profile is a stream configuration.  The stream configuration provides the appropriate settings to the stream processor running inside the RFIC.  These instructions assume the BytePipe_x9002 with the ADRV9002 RFIC is being used however the process is the same for other NextGenRF Design platforms.  
 
-*The following instructions assume your machine (Linux or Windows) is on the same network as either ZCU102-ARDV9002 or BytePipe 3cg 9002.*
+## Generating Profile
 
-## Table of Contents
-- [IIO-Oscilloscope Streams and Profiles](#iio-oscilloscope-streams-and-profiles)
-  - [Table of Contents](#table-of-contents)
-- [Special Note](#special-note)
-- [Update Device Profile and Stream](#update-device-profile-and-stream)
-- [Acquiring Device Log](#acquiring-device-log)
-- [SSH Client](#ssh-client)
-  - [Secure Shell Chrome Extension](#secure-shell-chrome-extension)
-    - [Creating a connection to the board](#creating-a-connection-to-the-board)
+To generate a profile the appropriate TES software must be downloaded and installed.  For the BytePipe_x9002 the [ADRV9001-SDK Evaluation Software](https://www.analog.com/en/design-center/landing-pages/001/transceiver-evaluation-software.html) should be used.  Once downloaded install the software located in the `pkg\evaluation` folder.  Make sure to install as administrator.  For additional information refer to the [User Guide](https://www.analog.com/media/en/technical-documentation/user-guides/adrv9001-system-development-user-guide-ug-1828.pdf).  
 
----
+Once the appropriate version of TES is installed the user can select the appropriate settings by using the `Configure` tab.  Under the `Configure` tab are several additional tabs for configuring the device, board, clocks, etc.  Once the desired settings are configured the profile and stream can be exported by navigating to `File->Generate Profile File` and `File->Generate Stream Image`.  These files can then be used with IIO-Oscilloscope to update the devices configuration.  It is often useful to save the session for future reference.  This allows the user to load the session in the future to determine the setup of the corresponding profile.  The session can be saved by navigating to `File->Save Session`.  
 
-# Special Note
+For the purpose of this demonstration a profile was setup with Rx1B and Rx2B enabled and both transmitters disabled.  The profile, stream, and session files were saved as `profile_02.json`, `profile_02.bin`, and `profile_02.taxidi`.  
 
-<span style="color:red">
-For ZCU102-ADRV9002 there are some bugs in the 2019_r1 build.  You must used the pre-release version provided by [ADI](https://github.com/analogdevicesinc/hdl/releases/tag/hdl_2019_r2). </span> 
-<br><br>
-<span style="color:red">
-If ZCU102-ADRV9002 is revision `B0`, the SD card files  `BOOT.bin` and `system.dtb` MUST be replaced with the files from [here](http://swdownloads.analog.com/cse/tmp/B0_2019_r2_pre_release_zcu102.zip).  Replace the SD card `Image` with [this one](https://ez.analog.com/cfs-file/__key/communityserver-discussions-components-files/323/Image.zip).  Furthermore, if the FPGA is configured for LVDS instead of CMOS use `BOOT.bin` and `system.dtb` from [this](https://ez.analog.com/cfs-file/__key/communityserver-discussions-components-files/323/8662.system.zip).</span> 
-<br><br>
-<span style="color:red">
-**All** of the above build manipulation/tweaking has been done and is available in the repo under [`builds/iioscope/adi_hdl_2019_r2/`](http://ngrf.poweredbyclear.com:3000/NGRF/IIO-Oscilloscope/src/master/builds/iooscope/adi_hdl_2019_r2/hdl_2019_r2.7z).  Simply download this, decompress it, and install it on your SD card.</span> 
+![tes_02](images/tes_02.png)
 
----
+## Pre-generated Profiles
 
-# Update Device Profile and Stream
-As previously mentioned, IIO-Oscilloscope UI application fails to load profiles and streams.  Until more time is spent to determine the root cause, the following process may be used.
+For convenience several pre-generated profiles are included with this repository.  These are described below.
 
-Assumptions:  
-- Profile:  `lteDefault_adrv9002.json`
-- Stream:  `lteDefault_adrv9002.bin`
-- Device: `/sys/bus/iio/devices/iio:device1` (this appears to be true for ZCU102-ADRV9002 kit)
-- SCP Client:  PuTTY-`PSCP`
-- Device IP: `10.12.4.4`
+| Profile         | Stream        | Session           | Description                                |
+|-----------------|---------------|-------------------|--------------------------------------------|
+| profile_01.json | stream_01.bin | session_01.taxidi | Rx1A, Rx2A: 25.6MSPS                       | 
+| profile_02.json | stream_02.bin | session_02.taxidi | Rx1B, Rx2B: 25.6MSPS                       | 
 
-1. On the machine in which the files were generate, open a terminal in the directory of the file.
-2. Copy the files to the device: (you will be prompted for root password, it is `analog`)
-    - `pscp -P 22 lteDefault_adrv9002.json root@10.12.4.4:/root/`
-    - `pscp -P 22 lteDefault_adrv9002.bin root@10.12.4.4:/root/`
-3. SSH into the device using Secure Shell Chrome extension and the connection created in section [Creating a connection to the board](#creating-a-connection-to-the-board) 
-    -  Click `Connect` ![conn](../docs/images/sshConn.png) or just hit Enter
-    -  If this is the first time you have connected you will be prompted to save the remote (device) fingerprint, enter `yes`
-    -  When prompted enter root password: `analog`
-4. Verify the files are present by issuing `ls` on the command line.  You should see the two files you transferred
-5. Load/apply the stream and profile
-    - Stream: `cat lteDefault_adrv9002.bin > /sys/bus/iio/devices/iio:device1/stream_config`
-    - Profile: `cat lteDefault_adrv9002.json > /sys/bus/iio/devices/iio:device1/profile_config`
-    
-    
-There should be no error displayed when running the two `cat` commands.  If there is an error the log from the device needs to be extracted.  The file should be shared with appropriate NGRF representative and/or open a support ticket with ADI.
+## Updating Device Profile - GUI
 
-#  Acquiring Device Log
-There is not a dedicated log for IIO-Oscilloscope running on the device.  ADI has chosen to dump message to `dmesg`.  To get a copy of `dmesg` content run this command from your home directory (i.e. /root or /home/analog): `dmesg > <sometingMeaninful>_dmesg.txt`.  Now the file needs to be transferred to your machine.  Assuming Windows, perform the following.
+There are two ways to update the device profile.  The first method uses the IIO-Oscilloscope GUI shown below.  This method allows the user to browse to the saved profile and stream image and update the device.  As of this writing the latest version [(v0.14)](https://github.com/analogdevicesinc/iio-oscilloscope/releases/tag/v0.14-master) of IIO-Oscilloscope GUI application fails to load profiles and streams for the ADRV9002.  This is thought to be an issue with the GUI itself.   
 
-1. Open a terminal in a folder of your choice
-2. Copy the remote file:  `pscp -P 22 root@10.12.4.4:/root/<sometingMeaninful>_dmesg.txt ./.`.  Enter the password when prompted; the file should be transferred.
+![iio_04](images/iio_04.png)
 
----
+## Updating Device Profile - SCP/SSH
 
-# SSH Client
-There is a Chrome extension which provides a very nice SSH client.  Ultimately it is up to you what SSH client SW you want to use, PuTTY, Tera Term, etc.  The following are the steps to install the Chrome extension.
+An alternative method for updating the device profile copies the profile and stream files to the device and then applies them to the appropriate iio device. 
 
-## Secure Shell Chrome Extension
-This client is preferred as it provides a nice interface and makes copying from the terminal a breeze.  To copy text from the remote terminal merely select the text and Secure Shell will take care of the copying and inform you as such.
+### Copying Device Profile
 
-1. Open Chrome
-2. Go [here](https://chrome.google.com/webstore/category/extensions?hl=en)
-3. Enter `secure shell` in the <br>![search area](../docs/images/chromeExtSearch.png)
-4. Select <br>![Secure Shell offered by `Google Secure Shell Developers`](../docs/images/secureshell.png)
-5. Click **Add to Chrome** button and allow it to install
+This example shows how to copy the generated profile and stream files from a linux host machine to the device using a secure copy client such as `pscp`.  When prompted for a password enter `analog`.  
 
-The new extension should show up to the right of the address bar ![extensions](../docs/images/chromeExtBar.png).  If it doesn't appear click the puzzle looking icon and click the **pin** next to Secure Shell ![pin](../docs/images/pinsecureShell.png).
+```bash
+pscp -P 22 ~/iio-oscilloscope/profiles/profile_01.json root@192.168.81.193:/home/profiles/
+pscp -P 22 ~/iio-oscilloscope/profiles/stream_01.bin root@192.168.81.193:/home/profiles/
+```
 
-### Creating a connection to the board
-This procedure should only need to be done once **unless** the IP address of the board changes.
+Similar commands can be used on a Windows machine using cygwin as shown below:
 
-1. Click the Secure Shell icon in Chrome ![ssicon](../docs/images/ssIcon.png)
-2. Select **Connection Dialog** ![dialog](../docs/images/ssconnDialog.png)
-3. Select `[New Connection]`
-4. Create an entry like shown in step 2, entering the correct IP address of the board.
+```bash
+scp -P 22 stream_01.bin root@192.168.81.193:/home/profiles/
+scp -P 22 profile_01.json root@192.168.81.193:/home/profiles/
+```
+
+An alternative to copying with bash commands is to use [WinSCP](https://winscp.net/download/WinSCP-5.19.1-Setup.exe).  This can be downloaded onto a Windows machine and used to copy files to the device.  To use WinSCP first connect as shown below.  Replace the ip address with the ip address of your device.  The password is `root`. Once connected the files can be copied to and from the appropriate folders.
+
+![WinSCP_01](images/WinSCP_01.png)
+
+![WinSCP_02](images/WinSCP_02.png)
+
+The SD card can also be used to copy profiles to the device.  The released SD card image has several pre-loaded profiles located at `/home/profiles/` on the device.  Additional profiles can be copied to this folder by inserting the SD card into a linux machine and copying the files to this folder.
+
+### Applying Device Profile
+
+Once the profile and stream files are copied to the device they must be applied to the appropriate IIO device driver.  This must be done from the command line of the device.  The device command line can be connected using SSH or via the serial port.  To connect to the serial port simply connect the USB serial port to a PC and open a terminal using a COM port with 115200 8n1 settings.  To connect via SSH enter the following bash commands from a linux bash terminal.  The appropriate ip address of your device should be used with `root` as the username and when prompted use the password `analog`.
+
+```bash
+ssh root@192.168.81.193
+```
+
+Once connected to the devices command line the appropriate profile and stream files should be copied to `iio:device1`.  This is shown below.  The stream image should be copied before the profile.  Once copied the device will automatically load the new profile settings.
+
+
+```bash
+cat /home/profiles/stream_01.bin > /sys/bus/iio/devices/iio:device1/stream_config
+cat /home/profiles/profile_01.json > /sys/bus/iio/devices/iio:device1/profile_config
+```
+
+**Note:** Often re-connecting to the device from IIO-Oscilloscope is advisable to make sure the new settings are applied.  In addition many of the profiles will load with the IIO devices with the ENSM set to `calibrated`.  To enable the corresponding functionality change the ENSM to `rf_enabled` using the IIO-Oscilloscope GUI controls panel.  
+
+Additional information regarding the loading ADRV9002 profiles can be found [here](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/adrv9002#profiles).  
 
 

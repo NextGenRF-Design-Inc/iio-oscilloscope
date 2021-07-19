@@ -22,6 +22,9 @@ The IIO-Oscilloscope application developed by Analog Devices is a cross platform
 | [Building HDL](docs/BuildingHdl.md)               | Building HDL from source                  |
 | [Building Application](docs/BuildingLinux.md)     | Building application from source          |     
 | [Update Profile/Stream](docs/UpdateProfiles.md)   | Update device stream and profile          |
+| [Rx Signal Path](docs/RxSignalPath.md)            | Advanced Rx configuration                 |
+| [Tx Signal Path](docs/TxSignalPath.md)            | Advanced Tx configuration                 |
+| [DPD](docs/dpd.md)                                | Digital Pre-distortion                    |
 
 
 

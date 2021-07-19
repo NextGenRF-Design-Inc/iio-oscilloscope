@@ -40,9 +40,15 @@ update_compile_order -fileset sources_1
 set_property top system_top [current_fileset]
 update_compile_order -fileset sources_1
 
+# Generate Targets
+generate_target all [get_files  $wrkDir/vivado/$project_name.srcs/sources_1/bd/system/system.bd]
+export_ip_user_files -of_objects [get_files $wrkDir/vivado/$project_name.srcs/sources_1/bd/system/system.bd] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] $wrkDir/vivado/$project_name.srcs/sources_1/bd/system/system.bd]
+launch_runs -jobs 8 {system_axi_hp1_interconnect_0_synth_1 system_util_adc_2_pack_0_synth_1}
+
 # Launch Runs
 launch_runs impl_1 -to_step write_bitstream -jobs 8
-wait_on_run impl_1
+wait_on_run -quiet impl_1
 
 # Export Hardware Defintion Files
 update_compile_order -fileset sources_1
