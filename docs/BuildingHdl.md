@@ -38,19 +38,6 @@ The script will download all the necessary source code and and launch the Vivado
 
 Once the build is finished a system.hdf file will be created and exported to the top of the workspace directory. 
 
-## Build Error
-
-If the build fails with the following error it is typically due to a memory issue. 
-
-```bash
-/Xilinx/Vivado/2019.1/bin/loader: line 267:  6758 Killed "$RDI_PROG" "$@"
-```
-When this occurs open the project using the Vivado GUI.  It is likely still running the implementation.  Wait for it to finish and then run the following command to copy the generated hardware definition file.
-
-```bash
-cp vivado/iio.runs/impl_1/system_top.sysdef system.hdf
-```
-
 ### Disclaimer
 ----------------------
 NextGen RF Design makes no warranty for the use of this code or design. This code is provided  "As Is". NextGen RF Design assumes no responsibility for

@@ -47,7 +47,7 @@ create_ip_run [get_files -of_objects [get_fileset sources_1] $wrkDir/vivado/$pro
 launch_runs -jobs 8 {system_axi_hp1_interconnect_0_synth_1 system_util_adc_2_pack_0_synth_1}
 
 # Launch Runs
-launch_runs impl_1 -to_step write_bitstream -jobs 8
+launch_runs impl_1 -to_step write_bitstream -jobs 6
 wait_on_run -quiet impl_1
 
 # Export Hardware Defintion Files
