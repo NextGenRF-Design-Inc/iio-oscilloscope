@@ -1,0 +1,51 @@
+wrkDir:=${PWD}
+srcDir:=$(dir $(lastword $(MAKEFILE_LIST)))
+
+.PHONY:	all
+
+all:directories tools kernel uboot atf package output
+
+directories:
+	@echo 'Source Directory: $(srcDir)'
+	@echo 'Build Directory: $(wrkDir)'
+	@echo 'Xilinx SDK Directory: $(sdkDir)'
+
+tools:
+	export CROSS_COMPILE=aarch64-linux-gnu-
+	export ARCH=aarch64
+
+kernel:
+	git clone --branch 2019_R2 https://github.com/analogdevicesinc/linux.git
+	wget https://raw.githubusercontent.com/analogdevicesinc/wiki-scripts/master/linux/build_zynqmp_kernel_image.sh
+	chmod +x build_zynqmp_kernel_image.sh
+	./build_zynqmp_kernel_image.sh $(wrkDir)/linux xilinx/zynqmp-zcu102-rev10-adrv9002.dtb
+	mv zynqmp-zcu102-rev10-adrv9002.dtb system.dtb
+
+uboot: 
+	git clone --branch xilinx-v2019.1 https://github.com/Xilinx/u-boot-xlnx.git uboot
+	make -C uboot/ distclean
+	make -C uboot/ xilinx_zynqmp_zcu102_rev1_0_defconfig
+	make - C uboot/
+
+atf:
+	git clone https://github.com/Xilinx/arm-trusted-firmware.git atf
+	make -C atf/ PLAT=zynqmp RESET_TO_BL31=1
+
+package:
+	wget https://raw.githubusercontent.com/analogdevicesinc/wiki-scripts/master/zynqmp_boot_bin/build_zynqmp_boot_bin.sh
+	sudo chmod +x build_zynqmp_boot_bin.sh 
+	sudo ln -s /usr/bin/make /usr/bin/gmake
+	./build_zynqmp_boot_bin.sh system_top.hdf uboot/u-boot.elf atf/build/zynqmp/release/bl31/bl31.elf
+
+output:
+	cp iioscope/images/linux/image.ub ./
+	cp iioscope/images/linux/BOOT.BIN ./
+	cp iioscope/images/linux/system.dtb ./
+	cp iioscope/images/linux/zynqmp_fsbl.elf ./
+
+
+
+
+
+	
+

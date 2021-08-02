@@ -28,7 +28,7 @@ export PATH=$PATH:~/tools/Xilinx/Vivado/2019.1/bin
 
 ## Execute Build Script
 
-The HDL is built by executing a script from the IIO-Oscilloscope/hdl directory.  This is shown below.  
+The HDL is built by executing a script from the IIO-Oscilloscope/hdl directory.  This is shown below for the BytePipe_3cg_9002 hardware platform.  
 
 ```bash
 make -f ~/iio-oscilloscope/hdl/bytepipe_3cg_9002/Makefile 

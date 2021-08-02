@@ -40,6 +40,8 @@ In addition a display should be connected using a mini display port cable.  The 
 
 Information for launching the IIO-Oscilloscope application locally or via a remote PC can be found [here](https://wiki.analog.com/resources/tools-software/linux-software/iio_oscilloscope).  The PC software can be downloaded from the releases tab [here](https://github.com/analogdevicesinc/iio-oscilloscope/releases).
 
+Additional information about the ADRV9002 IIO plugin can be found [here](https://wiki.analog.com/resources/tools-software/linux-software/adrv9002_plugin) along with information regarding the ADRV9002 Linux driver can be found [here](https://wiki.analog.com/resources/tools-software/linux-drivers/iio-transceiver/adrv9002?&#tracking_calibrations).
+
 ## Connecting
 
 With the SOM powered and connected to the local network launch the IIO-Oscilloscope application on a remote PC.  The first screen should be the connection screen as shown below.  To connect to the hardware select the manual connection method and input the ip address.  Once `Refresh` is pushed the device should return information about the build and available IIO devices.  Eight IIO Devices should be available as shown below.  

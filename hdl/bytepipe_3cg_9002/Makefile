@@ -6,7 +6,7 @@ vivadoDir=$(shell echo $(whichVivado))
 
 .PHONY:	all
 
-all: directories boards adi_hdl build export
+all: directories boards adi_hdl ip build
 
 directories:
 	@echo 'Source Directory: $(srcDir)'
@@ -16,17 +16,16 @@ directories:
 boards:
 	cp -r $(srcDir)/../../boards/bytepipe_3cg_som $(vivadoDir)/data/boards/board_files/
 
-build:
+ip:
 	$(MAKE) -C $(wrkDir)/Adi/hdl/library/util_pack/util_upack2 xilinx || exit $$?;
 	$(MAKE) -C $(wrkDir)/Adi/hdl/library/util_pack/util_cpack2 xilinx || exit $$?;
 	$(MAKE) -C $(wrkDir)/Adi/hdl/library/sysid_rom xilinx || exit $$?;
 	$(MAKE) -C $(wrkDir)/Adi/hdl/library/axi_sysid xilinx || exit $$?;
 	$(MAKE) -C $(wrkDir)/Adi/hdl/library/axi_dmac xilinx || exit $$?;
 	$(MAKE) -C $(wrkDir)/Adi/hdl/library/axi_adrv9001 xilinx || exit $$?;
-	vivado -mode batch -nojournal -source $(srcDir)/make.tcl
 
-export:
-	cp $(wrkDir)/vivado/iio.runs/impl_1/system_top.sysdef $(wrkDir)/system.hdf
+build:
+	vivado -mode batch -nojournal -source $(srcDir)/make.tcl
 
 adi_hdl: | $(hdlDir)
 
