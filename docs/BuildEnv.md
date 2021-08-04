@@ -43,7 +43,7 @@ sudo snap install barrier
 
 # Vivado
 
-To build the HDL Vivado 2019.1 must be downloaded and installed from [here](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive.html).  
+To build the HDL Vivado 2019.1 must be downloaded and installed from [here](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive.html).  If you do not plan to build the HDL from source Vivado isn't needed.  
 
 ![vivado_2019.1_download](images/vivado_2019_1_download.png)
 
@@ -62,7 +62,7 @@ PetaLinux dependency installation can be performed using the script `petatepinst
 # Installation Steps
 The following steps are preformed on a Linux machine, either a VM or a normal machine.
 
-1. Download [PetaLinux 2019.2](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools/2019-2.html).  It is 8GB, it will be a while.
+1. Download [PetaLinux 2019.1](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools/archive.html).  It is 8GB, it will be a while.
 2. Install PetaLinux dependencies using `petatepinstall.sh` or manually as detailed [below](#manual-petalinux-dependency-installation)
 3. Once the PetaLinux installer download has completed and the dependencies are installed, PetaLinux can be installed.
 4. In a Bash make the installer executable: `chmod +x petalinux-v2019.2-final-installer.run`
