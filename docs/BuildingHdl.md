@@ -20,10 +20,10 @@ cd workspace
 
 ## Setup Vivado
 
-Add the Vivado path to the local directory as shown below.
+Add the Vivado path to the local environment path.  The path depends on the location of Vivado installed on your machine and may be different from below.
 
 ```bash
-export PATH=$PATH:~/tools/Xilinx/Vivado/2019.1/bin
+export PATH=~/tools/Xilinx/Vivado/2019.1/bin:$PATH
 ```
 
 ## Execute Build Script

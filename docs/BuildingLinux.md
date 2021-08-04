@@ -30,7 +30,7 @@ In either case to build the application a system.hdf must be placed at the top l
 
 The application, bsp, boot-loader, and all necessary files are built using a single build script.  The script fetches the latest sources from Analog Devices and Xilinx and compiles the source code for NextGenRF Design hardware platforms.  
 
-Before executing the script the Petalinux environment path must be setup as shown below. 
+Before executing the script the Petalinux environment path must be setup as shown below.  This path is dependent on the location installed on your machine and may be different from below.
 
 ```bash
 source ~/tools/Xilinx/petalinux/2019.1/settings.sh
@@ -74,4 +74,4 @@ make -f ~/iio-oscilloscope/app/bytepipe_3cg_9002/Makefile_OSL
 
 The script starts by downloading the necessary source from [here](https://github.com/analogdevicesinc/linux.git).  It then downloads a build script from Analog Devices which can be found [here](https://raw.githubusercontent.com/analogdevicesinc/wiki-scripts/master/linux/build_zynqmp_kernel_image.sh).  This script builds the linux kernel based on the appropriate device tree.  Once finished the kernel image and device tree blob are exported to the top of `workspace`.
 
-Next the script builds the universal bootloader (u-boot) and ARM Trusted Firmware (ATF) for the corresponding hardware platform.  Once finished it packages the FPGA, first stage bootloader (FSBL), u-boot, and ATF, images into a single BOOT.BIN file which is exported to the top of `workspace`.
+Next the script builds the universal bootloader (u-boot) and ARM Trusted Firmware (ATF) for the corresponding hardware platform.  Once finished it packages the FPGA, first stage bootloader (FSBL), u-boot, and ATF images into a single BOOT.BIN file which is exported to the top of `workspace`.
