@@ -75,3 +75,5 @@ make -f ~/iio-oscilloscope/app/bytepipe_3cg_9002/Makefile_OSL
 The script starts by downloading the necessary source from [here](https://github.com/analogdevicesinc/linux.git).  It then downloads a build script from Analog Devices which can be found [here](https://raw.githubusercontent.com/analogdevicesinc/wiki-scripts/master/linux/build_zynqmp_kernel_image.sh).  This script builds the linux kernel based on the appropriate device tree.  Once finished the kernel image and device tree blob are exported to the top of `workspace`.
 
 Next the script builds the universal bootloader (u-boot) and ARM Trusted Firmware (ATF) for the corresponding hardware platform.  Once finished it packages the FPGA, first stage bootloader (FSBL), u-boot, and ATF images into a single BOOT.BIN file which is exported to the top of `workspace`.
+
+The resulting build outputs are then copied from the build directory to the top of workspace.  These files can be copied to the SD card.  See [Device Programming](Programming.md) which describes flashing the SD card with the correct partitions and file system.
