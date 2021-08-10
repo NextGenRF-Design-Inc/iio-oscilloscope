@@ -33,7 +33,6 @@ $(hdlDir):
 	@mkdir -p $(hdlDir)
 	git clone --branch hdl_2019_r2 https://github.com/analogdevicesinc/hdl.git $(wrkDir)/Adi/hdl
 	@sed -i 's/2019.1/2019.1.3/g' $(wrkDir)/Adi/hdl/library/scripts/adi_ip_xilinx.tcl
-	@cp $(srcDir)/axi_adrv9001_if.v $(wrkDir)/Adi/hdl/library/axi_adrv9001/
 
 
 	
