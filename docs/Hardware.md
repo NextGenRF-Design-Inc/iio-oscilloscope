@@ -9,7 +9,13 @@ This document gives an overview of NextGenRF Design's Hardware supported by the 
 
 The BytePipe_x9002 is a high performance RF Systom On Module (SOM).  The BytePipe_x9002 integrates a high performance Xilinx Zynq UltraScale+ baseband processor with the Analog Devices ADRV9002 RFIC.   
 
-The SOM itself is shown below.  Additional information can be found on [NextGenRF Design's website.](https://www.nextgenrf.com/products/rf-system-on-a-module/)  The SOM requires a carrier board to supply power and provide access to its peripherials.  NextGenRF Design provides a hardware development kit (HDK) described in following sections.
+The SOM itself along with the block diagram is shown below.  Additional information can be found on [NextGenRF Design's website.](https://www.nextgenrf.com/products/rf-system-on-a-module/)  The SOM requires a carrier board to supply power and provide access to its peripherials.  NextGenRF Design provides a hardware development kit (HDK) described in following sections.
+
+![som_blockdiagram.png](images/som_blockdiagram.png)
+
+![bytepipe_x9002_som](images/bytepipe_x9002_som.png)
+
+The following table provides an overview of the main functional blocks.  Additional details regarding each block can be found in following sections.
 
 |  Connection                               | Description                                             |
 |-------------------------------------------|---------------------------------------------------------|
@@ -33,7 +39,7 @@ The SOM itself is shown below.  Additional information can be found on [NextGenR
 | [Cover](#som-cover)                       | Programming hardware device with image                  |
 | [ADRV9002 Version](#som-adrv9002-version) | ADRV9002 Silicon version                                |
 
-![bytepipe_x9002_som](images/bytepipe_x9002_som.png)
+
 
 ## J600
 
