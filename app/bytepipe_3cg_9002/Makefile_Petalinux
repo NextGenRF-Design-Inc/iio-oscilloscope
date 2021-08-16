@@ -3,7 +3,7 @@ srcDir:=$(dir $(lastword $(MAKEFILE_LIST)))
 
 .PHONY:	all
 
-all:directories fetch project dts kernel build package output
+all:directories fetch project dts build package output
 
 directories:
 	@echo 'Source Directory: $(srcDir)'
