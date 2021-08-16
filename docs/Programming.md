@@ -3,7 +3,7 @@
 ---
 # Programming SD Card
 
-The following instructions detail the steps required for programming a SD card with the IIO-Oscilloscope application for NextGenRF Design hardware platforms.  Additional information for non NextGenRF Design hardware platforms can be found on [here](https://wiki.analog.com/resources/tools-software/linux-software/zynq_images).
+The following instructions detail the steps required for programming a SD card with the IIO-Oscilloscope application for NextGenRF Design hardware platforms.  Additional information for non NextGenRF Design hardware platforms can be found on [here](https://swdownloads.analog.com/cse/kuiper/image_2021-07-28-ADI-Kuiper-full.zip).
 
 # Formatting SD Card
 
