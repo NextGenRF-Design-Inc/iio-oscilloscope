@@ -7,9 +7,7 @@ This document gives an overview of NextGenRF Design's Hardware supported by the 
 
 # BytePipe_x9002
 
-The BytePipe_x9002 is a high performance RF Systom On Module (SOM).  The BytePipe_x9002 integrates a high performance Xilinx Zynq UltraScale+ baseband processor with the Analog Devices ADRV9002 RFIC.   
-
-The SOM itself along with the block diagram is shown below.  Additional information can be found on [NextGenRF Design's website.](https://www.nextgenrf.com/products/rf-system-on-a-module/)  The SOM requires a carrier board to supply power and provide access to its peripherials.  NextGenRF Design provides a hardware development kit (HDK) described in following sections.
+The BytePipe_x9002 is a high performance RF Systom On Module (SOM).  The BytePipe_x9002 integrates a high performance Xilinx Zynq UltraScale+ baseband processor with the Analog Devices ADRV9002 RFIC.  Below is a block diagram of the BytePipe_x9002 SOM along with pictures of the physical hardware.  Additional information can be found on [NextGenRF Design's website.](https://www.nextgenrf.com/products/rf-system-on-a-module/)
 
 ![som_blockdiagram.png](images/som_blockdiagram.png)
 
@@ -21,7 +19,7 @@ The following table provides an overview of the main functional blocks.  Additio
 |-------------------------------------------|---------------------------------------------------------|
 | [J600](#som-J600)                         | Digital Interface Connector                             |
 | [J601](#som-J601)                         | Power/Analog Interface Connector                        |
-| [Boot Switch](#som-boot-switch)    	      | Boot Selector Switch                                    |
+| [Boot Switch](#som-boot-switch)    	    | Boot Selector Switch                                    |
 | [ADRV9002 Interface](#som-adrv9002-pins)  | ADRV9002 Interface                                      |
 | [DAC](#som-dac)                           | Digital to Analog Converters                            |
 | [ADC](#som-adc)                           | Analog to Digital Converters                            |
@@ -299,6 +297,10 @@ The gold anodized aluminum cover provides RF shielding along with a heat sink in
 Early engineering samples of the BytePipe_x9002 had a mix of ADRV9002 silicon.  Early versions used the ADRV9002 RevB0 silicon while later versions used the ADRV9002 RevC0 silicon.  Currently all released versions of the BytePipe_x9002 have the ADRV9002 RevC0 silicon. 
 
 # Hardware Development Kit (HDK)
+
+The SOM requires a carrier board to supply power and provide access to its peripherials.  NextGenRF Design provides a hardware development kit (HDK) described in following sections.
+
+![BytePipe_x9002_HardwareSetup](images/BytePipe_x9002_HardwareSetup.jpg)
 
 |  Connection                             | Description                                             |
 |-----------------------------------------|---------------------------------------------------------|
