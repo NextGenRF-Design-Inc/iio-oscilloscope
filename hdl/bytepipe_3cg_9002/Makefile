@@ -6,7 +6,7 @@ vivadoDir=$(shell echo $(whichVivado))
 
 .PHONY:	all
 
-all: directories boards adi_hdl source ip build
+all: directories boards adi_hdl ip build
 
 directories:
 	@echo 'Source Directory: $(srcDir)'
@@ -15,11 +15,6 @@ directories:
 
 boards:
 	cp -r $(srcDir)/../../boards/bytepipe_3cg_som $(vivadoDir)/data/boards/board_files/
-
-source: 	
-	@cp $(srcDir)/axi_adrv9001_if.v $(wrkDir)/Adi/hdl/library/axi_adrv9001/axi_adrv9001_if.v 
-	#@cp $(srcDir)/adrv9001_tx.v $(wrkDir)/Adi/hdl/library/axi_adrv9001/adrv9001_tx.v 
-	#@cp $(srcDir)/adrv9001_rx.v $(wrkDir)/Adi/hdl/library/axi_adrv9001/adrv9001_rx.v 
 
 ip:
 	$(MAKE) -C $(wrkDir)/Adi/hdl/library/util_pack/util_upack2 xilinx || exit $$?;

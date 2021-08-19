@@ -993,7 +993,7 @@
           "lvdsStrobeBitInversion": true,
           "lvdsUseLsbIn12bitMode": 0,
           "lvdsTxFullRefClkEn": false,
-          "lvdsRxClkInversionEn": true,
+          "lvdsRxClkInversionEn": false,
           "cmosTxDdrNegStrobeEn": false,
           "cmosDdrPosClkEn": false,
           "cmosDdrClkInversionEn": false,
