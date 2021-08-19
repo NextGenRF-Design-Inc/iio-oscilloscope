@@ -364,7 +364,7 @@ proc create_root_design { parentCell } {
   # Create instance: rom_sys_0, and set properties
   set rom_sys_0 [ create_bd_cell -type ip -vlnv analog.com:user:sysid_rom:1.0 rom_sys_0 ]
   set_property -dict [ list \
-   CONFIG.PATH_TO_FILE {/home/enelson/Documents/Adi/hdl/projects/adrv9001/bytepipe/mem_init_sys.txt} \
+   CONFIG.PATH_TO_FILE {$script_folder/mem_init_sys.txt} \
    CONFIG.ROM_ADDR_BITS {9} \
  ] $rom_sys_0
 

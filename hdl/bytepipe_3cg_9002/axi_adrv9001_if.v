@@ -194,11 +194,7 @@ module axi_adrv9001_if #(
       .NUM_LANES (NUM_LANES),
       .DRP_WIDTH (DRP_WIDTH),
       .IODELAY_CTRL (1),
-      .IO_DELAY_GROUP ({IO_DELAY_GROUP,"_rx"}),
-      .SWAP_DIFF_IDATA(0),        
-      .SWAP_DIFF_QDATA(0),      
-      .SWAP_DIFF_STROBE(0),         
-      .SWAP_DIFF_DCLK(0)  
+      .IO_DELAY_GROUP ({IO_DELAY_GROUP,"_rx"})
     ) i_rx_1_phy (
     .rx_dclk_in_n_NC (rx1_dclk_in_n_NC),
     .rx_dclk_in_p_dclk_in (rx1_dclk_in_p_dclk_in),
@@ -259,11 +255,7 @@ module axi_adrv9001_if #(
       .NUM_LANES (NUM_LANES),
       .DRP_WIDTH (DRP_WIDTH),
       .IODELAY_CTRL (0),
-      .IO_DELAY_GROUP ({IO_DELAY_GROUP,"_rx"}),
-      .SWAP_DIFF_IDATA(1),        
-      .SWAP_DIFF_QDATA(1),      
-      .SWAP_DIFF_STROBE(1),         
-      .SWAP_DIFF_DCLK(0)  
+      .IO_DELAY_GROUP ({IO_DELAY_GROUP,"_rx"})
     ) i_rx_2_phy (
     .rx_dclk_in_n_NC (rx2_dclk_in_n_NC),
     .rx_dclk_in_p_dclk_in (rx2_dclk_in_p_dclk_in),
@@ -303,11 +295,11 @@ module axi_adrv9001_if #(
   ) i_rx_2_link (
     .adc_rst (rx2_rst),
     .adc_clk_div (adc_2_clk_div),
-    .adc_data_0 (adc_2_data_0),
-    .adc_data_1 (adc_2_data_1),
-    .adc_data_2 (adc_2_data_2),
-    .adc_data_3 (adc_2_data_3),
-    .adc_data_strobe (adc_2_data_strobe),
+    .adc_data_0 (~adc_2_data_0),
+    .adc_data_1 (~adc_2_data_1),
+    .adc_data_2 (~adc_2_data_2),
+    .adc_data_3 (~adc_2_data_3),
+    .adc_data_strobe (~adc_2_data_strobe),
     .adc_valid (adc_2_valid),
     // ADC interface
     .rx_clk (rx2_clk),
@@ -322,11 +314,7 @@ module axi_adrv9001_if #(
    .CMOS_LVDS_N (CMOS_LVDS_N),
    .NUM_LANES (TX_NUM_LANES),
    .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
-   .USE_RX_CLK_FOR_TX (USE_RX_CLK_FOR_TX),
-   .SWAP_DIFF_IDATA(0),        
-   .SWAP_DIFF_QDATA(1),      
-   .SWAP_DIFF_STROBE(1),         
-   .SWAP_DIFF_DCLK(1)         
+   .USE_RX_CLK_FOR_TX (USE_RX_CLK_FOR_TX)
   ) i_tx_1_phy (
 
    .ref_clk (ref_clk),
@@ -389,11 +377,7 @@ module axi_adrv9001_if #(
    .CMOS_LVDS_N (CMOS_LVDS_N),
    .NUM_LANES (TX_NUM_LANES),
    .FPGA_TECHNOLOGY (FPGA_TECHNOLOGY),
-   .USE_RX_CLK_FOR_TX (USE_RX_CLK_FOR_TX),
-   .SWAP_DIFF_IDATA(0),        
-   .SWAP_DIFF_QDATA(0),      
-   .SWAP_DIFF_STROBE(0),         
-   .SWAP_DIFF_DCLK(0)  
+   .USE_RX_CLK_FOR_TX (USE_RX_CLK_FOR_TX)
   ) i_tx_2_phy (
 
    .ref_clk (ref_clk),
