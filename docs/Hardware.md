@@ -113,8 +113,8 @@ J601 is a board to board connector which provides access to power and RF control
 |       Description             |    Signal      | Pin | Pin |    Signal      |       Description             |
 |-------------------------------|----------------|-----|-----|----------------|-------------------------------|
 | Ground                        | GND            | 1   | 2   | GND            | Ground                        |
-| RF External Clock             | RF_CLK_N       | 3   | 4   | MCS_N          | MultiChip synchronization     |
-| RF External Clock             | RF_CLK_P       | 5   | 6   | MCS_P          | MultiChip synchronization     |
+| RF External Clock             | RF_CLK_N       | 3   | 4   | MCS_P          | MultiChip synchronization     |
+| RF External Clock             | RF_CLK_P       | 5   | 6   | MCS_N          | MultiChip synchronization     |
 | Ground                        | GND            | 7   | 8   | GND            | Ground                        |
 | GPIO / DAC                    | AGPIO_2        | 9   | 10  | AUXADC_0       | ADC                           |
 | GPIO                          | AGPIO_4        | 11  | 12  | AUXADC_1       | ADC                           |
