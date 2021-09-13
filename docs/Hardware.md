@@ -392,16 +392,16 @@ The HDK routes unused MIO signals to J23.
 |       Description  |    Signal   | Pin | Pin |    Signal   |       Description  |
 |--------------------|-------------|-----|-----|-------------|--------------------|
 | Ground             | GND         | 1   | 2   | GND         | Ground             |
-| GPIO               | MIO32       | 3   | 4   | MCS_N       | GPIO               |
-| GPIO               | MIO31       | 5   | 6   | MCS_P       | GPIO               |
-| GPIO               | MIO36       | 7   | 8   | GND         | GPIO               |
-| GPIO               | MIO35       | 9   | 10  | AUXADC_0    | GPIO               |
-| GPIO               | MIO26       | 11  | 12  | AUXADC_1    | GPIO               |
-| GPIO               | MIO33       | 13  | 14  | GND         | GPIO               |
-| GPIO               | MIO37       | 15  | 16  | AGPIO_1     | GPIO               |
-| GPIO               | MIO38       | 17  | 18  | AGPIO_3     | GPIO               |
-| I2C Clock          | I2C1_SCL    | 19  | 20  | UART1_RX    | UART1 Rx Input     |
-| I2C Data           | I2C1_SDA    | 21  | 22  | UART1_TX    | UART1 Tx Output    |
+| GPIO               | MIO32       | 3   | 4   | MIO43       | GPIO               |
+| GPIO               | MIO31       | 5   | 6   | MIO34       | GPIO               |
+| GPIO               | MIO36       | 7   | 8   | MIO42       | GPIO               |
+| GPIO               | MIO35       | 9   | 10  | MIO40       | GPIO               |
+| GPIO               | MIO26       | 11  | 12  | MIO44       | GPIO               |
+| GPIO               | MIO33       | 13  | 14  | MIO39       | GPIO               |
+| GPIO               | MIO37       | 15  | 16  | MIO41       | GPIO               |
+| GPIO               | MIO38       | 17  | 18  | UART1_RX    | UART1 Rx Input     |
+| I2C Clock          | I2C1_SCL    | 19  | 20  | UART1_TX    | UART1 Tx Output    |
+| I2C Data           | I2C1_SDA    | 21  | 22  | VCC1V8      | 1.8V VCC           |
 | Ground             | GND         | 23  | 24  | GND         | Ground             |
 | 3.3V  VCCIO        | VCC3V3      | 25  | 26  | VCC3V3      | 3.3V  VCCIO        |
 
@@ -456,12 +456,12 @@ The HDK provides direct access to the SOM transmit and receive RF ports.  In add
 
 ## LNA
 
-The HDK includes a low noise amplifier connected to RX1A and RX2A.  Currently IIO-Oscilloscope does not support the enabling of the LNAs.  By default the LNAs are powered down resulting in roughly 20dB of insertion loss.  The LNAs can be enabled by apply a jumper between the LNA enable pin and 1.8V from the HDK.
+The HDK includes a low noise amplifier connected to RX1A and RX2A.  Currently IIO-Oscilloscope does not support the enabling of the LNAs.  By default the LNAs are powered down resulting in roughly 20dB of insertion loss.  The LNAs can be enabled by apply a jumper between the LNA enable pin and 1.8V from the HDK J22 and J23.
 
-|  LNA Enable Pin  | Receive Port  | Description                              |
-|------------------|---------------|------------------------------------------|
-| AGPIO_6          | RX1A          | Add jumper between enable pin and 1.8V.  |
-| AGPIO_5          | RX2A          | Add jumper between enable pin and 1.8V.  |
+|  LNA Enable Pin  | Receive Port  | Connector |Description                              |
+|------------------|---------------|-----------|-----------------------------------------|
+| AGPIO_6          | RX1A          | J22.12    |Add jumper between enable pin and 1.8V.  |
+| AGPIO_5          | RX2A          | J22.11    |Add jumper between enable pin and 1.8V.  |
 
 
 ![hdk_lna](images/hdk_lna.png)
