@@ -56,10 +56,16 @@ If the ip address of the device is unknown the serial port can be used to query 
 
 The control panel provides basic configuration of the IIO Devices.  Each receivers and transmitter can be enabled with basic functionality.  The FPGA settings provide transmit signal generation enabling basic waveforms along with providing the ability to load custom waveform files.
 
+Note:
+
+The default profile for  IIO-Oscilloscope uses LO1 for both receivers and LO2 for both transmitters.  As a result if you change the LO frequency for one of the transmitters it also changes the LO frequency for the other transmitter.  The same goes for the receivers.  This can be modified by generating and loading a new profile described [here](UpdateProfiles.md).  When uploading a new profile make sure the firmware installed in the device matches the profiles's interface (cmos or lvds).  
+
 ![iio_02](images/iio_02.png)
 
 ## Plot
 
 The plot panel allows the received IQ signals to be plotted in either the time domain or frequency domain.  To enable plotting select the plot channels and push the play button.  
+
+The plot below shows TX2 connected to RX2A using an external SMA cable and 20dB pad.  This plot was taken with the LNA enabled providing roughly 15dB of gain.  Additional information for enabling the LNA can be found [here](Hardware.md#LNA).
 
 ![iio_03](images/iio_03.png)

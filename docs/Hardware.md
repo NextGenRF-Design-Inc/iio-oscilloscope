@@ -317,6 +317,7 @@ The SOM requires a carrier board to supply power and provide access to its perip
 | [MCS](#hdk-mcs)                         | Multi-chip Synchronization Signals                      |
 | [Fan](#hdk-fan)                         | Cooling fan                                             |
 | [RF SMA Ports](#hdk-rf-sma-ports)       | Baseband Processing System Multi-plexed I/O             |
+| [LNA](#hdk-lna)                         | Low noise amplifiers                                    |
 | [PMOD](#hdk-pmod)                       | PMOD Ports                                              |
 | [JTAG](#hdk-jtag)                       | On board USB JTAG & JTAG connector                      |
 | [Serial Port](#hdk-serial-port)         | Serial Ports                                            |
@@ -452,6 +453,18 @@ The HDK provides direct access to the SOM transmit and receive RF ports.  In add
 | RX2B        | J9          | Receive channel 2 with LNA            |
 
 ![BytePipe_x9002_HDK_LNA_GAIN](images/BytePipe_x9002_HDK_LNA_GAIN.PNG)
+
+## LNA
+
+The HDK includes a low noise amplifier connected to RX1A and RX2A.  Currently IIO-Oscilloscope does not support the enabling of the LNAs.  By default the LNAs are powered down resulting in roughly 20dB of insertion loss.  The LNAs can be enabled by apply a jumper between the LNA enable pin and 1.8V from the HDK.
+
+|  LNA Enable Pin  | Receive Port  | Description                              |
+|------------------|---------------|------------------------------------------|
+| AGPIO_6          | RX1A          | Add jumper between enable pin and 1.8V.  |
+| AGPIO_5          | RX2A          | Add jumper between enable pin and 1.8V.  |
+
+
+![hdk_lna](images/hdk_lna.png)
 
 ## PMOD
 
