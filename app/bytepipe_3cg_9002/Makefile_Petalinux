@@ -31,7 +31,6 @@ build:
 	cp $(srcDir)/zynqmp-bytepipe.dts iioscope/build/tmp/work-shared/plnx-zynqmp/kernel-source/arch/arm64/boot/dts/xilinx/
 	@cp $(srcDir)/Navassa_LVDS_profile.json iioscope/build/tmp/work-shared/plnx-zynqmp/kernel-source/firmware
 	@cp $(srcDir)/Navassa_CMOS_profile.json iioscope/build/tmp/work-shared/plnx-zynqmp/kernel-source/firmware
-	@cp $(srcDir)/adrv9002.c iioscope/build/tmp/work-shared/plnx-zynqmp/kernel-source/drivers/iio/adc/navassa
 	petalinux-build -p iioscope/
 
 package:
