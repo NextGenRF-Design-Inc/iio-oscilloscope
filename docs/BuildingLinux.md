@@ -64,6 +64,8 @@ The build script must start the build, let it fail, copy additional device tree 
 
 When the source has finished building a boot image is created.  The BOOT.BIN file encapsulates the first stage bootloader, FPGA binary, platform management unit, ARM trusted firmware, and UBOOT.  This is all done by the script.  The resulting build outputs are then copied from the build directory to the top of workspace.  These files can be copied to the SD card.  See [Device Programming](Programming.md) which describes flashing the SD card with the correct partitions and file system.
 
+<!---
+
 # Open Source Linux
 
 To build the application using Open Source Linux start by running the OSL build script located in the appropriate device folder under `iio-oscilloscope/app`.  The preferred method is to run this script from within the workspace directory as shown below.  Additional information regarding the Open Source Linux build flow can be found [here](https://wiki.analog.com/resources/tools-software/linux-build/generic/zynqmp).
@@ -75,5 +77,5 @@ make -f ~/iio-oscilloscope/app/bytepipe_3cg_9002/Makefile_OSL
 The script starts by downloading the necessary source from [here](https://github.com/analogdevicesinc/linux.git).  It then downloads a build script from Analog Devices which can be found [here](https://raw.githubusercontent.com/analogdevicesinc/wiki-scripts/master/linux/build_zynqmp_kernel_image.sh).  This script builds the linux kernel based on the appropriate device tree.  Once finished the kernel image and device tree blob are exported to the top of `workspace`.
 
 Next the script builds the universal bootloader (u-boot) and ARM Trusted Firmware (ATF) for the corresponding hardware platform.  Once finished it packages the FPGA, first stage bootloader (FSBL), u-boot, and ATF images into a single BOOT.BIN file which is exported to the top of `workspace`.
-
+--->
 The resulting build outputs are then copied from the build directory to the top of workspace.  These files can be copied to the SD card.  See [Device Programming](Programming.md) which describes flashing the SD card with the correct partitions and file system.
